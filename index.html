@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<!-- Standalone 3D portfolio delivery. Version: 2026-10-21-REFINED. -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1017">
+<meta name="description" content="David Li Zhongyuan 的互动个人空间。NTU Computer Science，人工智能、软件开发与机器人项目。">
+<meta property="og:title" content="David Li — A small universe of ideas"><meta property="og:description" content="An interactive 3D portfolio. Explore my projects, experience, and the things I love building."><meta property="og:type" content="website">
+<title>David Li · 3D Portfolio</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="portfolio-3d.css?v=refined3">
+<script src="assets/vendor/three.js" defer></script><script src="world-3d.js?v=refined3" defer></script><script src="portfolio-3d.js?v=refined3" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#journey" data-i18n="skip">跳到履历</a>
+<div id="scene" class="scene" aria-hidden="true"></div>
+<div class="scene-shade" aria-hidden="true"></div><div class="scene-vignette" aria-hidden="true"></div><div class="film-grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><span id="progress"></span></div>
+<header class="site-header"><a class="signature" href="#home" aria-label="David Li, home">David</a><div class="header-center mono">A SMALL UNIVERSE OF IDEAS</div><div class="header-controls"><button id="motion-toggle" class="icon-button" type="button" aria-label="暂停场景动画" aria-pressed="false" title="Pause animation">Ⅱ</button><button id="theme-toggle" class="icon-button" type="button" aria-label="切换明暗主题" title="Toggle theme">☼</button><button id="lang-toggle" class="language-button" type="button" aria-label="Switch to English">EN</button></div></header>
+<nav class="chapter-nav" aria-label="章节 / Chapters"><a href="#home" class="active" aria-current="location"><span>00</span><b data-i18n="navHome">你好</b></a><a href="#journey"><span>01</span><b data-i18n="navJourney">履历</b></a><a href="#work"><span>02</span><b data-i18n="navWork">作品</b></a><a href="#offscreen"><span>03</span><b data-i18n="navLife">生活</b></a><a href="#contact"><span>04</span><b data-i18n="navContact">联系</b></a></nav>
+<main>
+<section class="hero" id="home" aria-labelledby="hero-title">
+<div class="hero-frame" aria-hidden="true"><i>+</i><i>+</i><i>+</i><i>+</i></div>
+<div class="hero-intro"><p class="eyebrow">LI ZHONGYUAN / SINGAPORE</p><h1 id="hero-title">Hello,<br>I’m <em>David.</em></h1><p class="hero-subtitle" data-i18n="heroSubtitle">把好奇心，写进代码里。</p></div>
+<div class="hero-coordinates mono">1° 21′ N · 103° 49′ E<br><span data-i18n="heroLocation">此刻，在新加坡创造一点新东西。</span></div>
+<div class="badge-area" id="badge-area"><svg class="lanyard" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true"><path class="lanyard-shadow" id="lanyard-shadow" d="M200 -10 Q170 145 200 232"/><path id="lanyard-path" d="M200 -10 Q170 145 200 232"/><path class="lanyard-stripe" id="lanyard-stripe" d="M200 -10 Q170 145 200 232"/></svg><div class="badge-position" id="badge-position"><div class="badge-clip" aria-hidden="true"></div><button class="id-card" id="id-card" type="button" aria-label="可拖拽的个人工牌。点击查看个人简介；方向键晃动工牌。"><span class="card-top"><span>HELLO, WORLD.</span><span class="card-number">01</span></span><span class="card-photo"><img src="assets/david-li.jpg" alt="David Li Zhongyuan" width="1290" height="1807"></span><span class="card-name">David Li</span><span class="card-name-small">李中元 / LI ZHONGYUAN</span><span class="card-role">COMPUTER SCIENCE<br>NANYANG TECHNOLOGICAL UNIVERSITY</span><span class="card-bottom"><span>CLASS OF ’27</span><span class="barcode" aria-hidden="true"></span></span></button><span class="badge-caption" data-i18n="badgeHint">拖动工牌 · 点击认识我</span></div></div>
+<div class="hero-bottom"><span class="mono">CODE. CURIOSITY. A LITTLE PLAY.</span><a class="scroll-cue" href="#journey"><span data-i18n="scroll">向下探索</span><span class="scroll-line"></span></a><button id="reset-scene" type="button" class="scene-control"><span data-icon="reset"></span><span data-i18n="reset">重置视角</span></button></div>
+<div class="scene-instructions" id="scene-instructions"><span class="status-dot"></span><span data-i18n="sceneHint">拖动空白处旋转 · 点一下机器人</span></div>
+<div class="scene-fallback" id="scene-fallback" hidden><span data-icon="cube"></span><p data-i18n="fallback">当前设备无法启用 3D，所有履历和作品仍可正常浏览。</p></div>
+</section>
+<section class="journey content-section" id="journey" aria-labelledby="journey-title">
+  <div class="section-layout">
+    <div class="section-sticky">
+      <div class="journey-copy">
+      <p class="eyebrow">01 / THE JOURNEY</p>
+      <h2 id="journey-title" data-i18n="journeyTitle"></h2>
+      <p class="section-description" data-i18n="journeyIntro"></p>
+      <button class="text-button" type="button" data-resume><span data-icon="file"></span><span data-i18n="resumeLink"></span></button>
+      </div>
+      <div class="scene-window" aria-hidden="true"></div>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+<section class="work content-section" id="work" aria-labelledby="work-title">
+  <div class="section-heading"><div><p class="eyebrow">02 / THINGS I’VE BUILT</p><h2 id="work-title" data-i18n="workTitle"></h2></div><p class="section-description" data-i18n="workIntro"></p></div>
+  <div class="work-layout"><div class="project-index"><p class="index-label" data-i18n="projectsHint"></p><div id="project-tabs" role="tablist" aria-label="项目 / Projects" aria-orientation="vertical"></div><a class="text-button github-more" href="https://github.com/Davidli1127" target="_blank" rel="noopener noreferrer"><span data-icon="github"></span><span data-i18n="githubMore"></span></a></div><div id="project-stage"></div></div>
+</section>
+<section class="offscreen content-section" id="offscreen" aria-labelledby="offscreen-title">
+  <div class="section-heading"><div><p class="eyebrow">03 / BEYOND THE SCREEN</p><h2 id="offscreen-title" data-i18n="lifeTitle"></h2></div><span class="chapter-aside mono">PATIENCE. PRECISION. TEAMWORK.</span></div>
+  <div class="life-grid"><div class="snooker-gallery"><button type="button" id="photo-open" class="photo-open"><img id="snooker-photo" src="assets/snooker-match.jpg" alt="李中元在斯诺克比赛中击球" width="1290" height="848" loading="lazy"><span class="photo-zoom"><span data-icon="expand"></span><span data-i18n="viewPhoto"></span></span></button><div class="photo-toolbar"><p data-i18n="photoCaption"></p><div class="photo-options" role="group" aria-label="选择照片 / Choose photo"><button type="button" data-photo="match" class="active" aria-pressed="true" data-i18n="matchPhoto"></button><button type="button" data-photo="practice" aria-pressed="false" data-i18n="practicePhoto"></button></div></div></div>
+  <div class="snooker-story"><p class="eyebrow">ON THE TABLE</p><h3 data-i18n="snookerTitle"></h3><p data-i18n="snookerBody"></p><div class="champion-note"><span data-icon="trophy"></span><span>NTU INTER-HALL GAMES<br><strong data-i18n="championLabel">冠军 · 队长</strong></span></div><details class="toolkit"><summary><span data-i18n="toolkitToggle"></span><span class="plus" aria-hidden="true"></span></summary><p data-i18n="toolkitBody"></p><div class="toolkit-tags"><span>Python</span><span>Java</span><span>Android</span><span>PyTorch</span><span>Flask</span><span>SQL</span><span>Blender</span><span>GitHub</span></div></details></div></div>
+</section>
+<section class="contact content-section" id="contact" aria-labelledby="contact-title">
+  <div class="contact-copy"><p class="eyebrow">04 / THE NEXT CHAPTER</p><h2 id="contact-title" data-i18n="contactTitle"></h2><p class="section-description" data-i18n="contactIntro"></p><a class="email-link" href="mailto:LIZH0084@e.ntu.edu.sg"><span data-icon="mail"></span><span>LIZH0084@e.ntu.edu.sg</span></a><div class="contact-links"><a href="https://github.com/Davidli1127" target="_blank" rel="noopener noreferrer"><span data-icon="github"></span>GitHub</a><a href="https://www.linkedin.com/in/zhongyuan-li-28904b352" target="_blank" rel="noopener noreferrer"><span data-icon="linkedin"></span>LinkedIn</a><button type="button" data-resume><span data-icon="file"></span><span data-i18n="resumeShort"></span></button><button id="copy-email" type="button"><span data-icon="copy"></span><span data-i18n="copyEmail"></span></button></div><span id="copy-status" role="status"></span></div>
+  <footer><a class="signature" href="#home">David</a><span class="mono">© <span id="year">2026</span> DAVID LI ZHONGYUAN</span><span class="mono"><span class="status-dot"></span> SINGAPORE <time id="singapore-time"></time></span><a class="back-top" href="#home"><span data-i18n="backTop"></span><span data-icon="up"></span></a></footer>
+</section>
+</main>
+<div id="scene-chapter" class="scene-chapter mono" aria-hidden="true"></div>
+<div class="toast" id="scene-toast" role="status"></div>
+<dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="关闭 / Close"><span data-icon="close"></span></button><div id="dialog-content"></div></dialog>
+<noscript><style>.badge-area,.project-filters,.scene-instructions{display:none}.hero-intro{opacity:1}.content-section{opacity:1}</style><div class="noscript-note">This portfolio’s 3D scene and project panels use JavaScript. <a href="assets/david-li-resume.pdf">English résumé</a> / <a href="assets/david-li-resume-zh.pdf">中文简历</a> or <a href="https://ntu-planner.com/">visit NTU Planner</a>.</div></noscript>
+</body></html>
