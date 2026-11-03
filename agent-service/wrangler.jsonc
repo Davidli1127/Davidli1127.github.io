@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "david-portfolio-agent",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-11-03",
+  "workers_dev": true,
+  "vars": {
+    "GEMINI_MODEL": "gemini-3.5-flash-lite",
+    "ENVIRONMENT": "production",
+    "FREE_TIER_CONFIRMED": "1",
+    "ALLOWED_ORIGINS": "https://davidli1127.github.io",
+    "DAILY_CHAT_LIMIT": "60"
+  },
+  "observability": {
+    "enabled": false
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "david-agent-quotas",
+      "database_id": "4e0c6e3a-3022-4b05-b384-5c6b2831144d"
+    }
+  ]
+}

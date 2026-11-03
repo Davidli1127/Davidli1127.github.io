@@ -562,7 +562,7 @@ document.querySelector('#theme-toggle').addEventListener('click',()=>{const t=do
 function updateMotionLabel(){const paused=window.portfolioScene?.paused??false,b=document.querySelector('#motion-toggle');b.innerHTML=icon(paused?'play':'pause');b.setAttribute('aria-pressed',String(paused));b.setAttribute('aria-label',paused?tr('paused'):tr('playing'));b.title=paused?tr('paused'):tr('playing');document.documentElement.dataset.motion=paused?'paused':'playing';}
 document.querySelector('#motion-toggle').addEventListener('click',()=>{window.portfolioScene?.setPaused(!window.portfolioScene.paused);updateMotionLabel();});window.addEventListener('scene-motion',updateMotionLabel);
 document.querySelector('#reset-scene').addEventListener('click',()=>window.portfolioScene?.reset());
-window.addEventListener('robot-hello',()=>{const toast=document.querySelector('#scene-toast');toast.textContent=tr('robotHello');toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600);});
+window.addEventListener('robot-hello',()=>{if(window.portfolioAgent){window.portfolioAgent.open(document.querySelector('.agent-launcher'));return;}const toast=document.querySelector('#scene-toast');toast.textContent=tr('robotHello');toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600);});
 
 // A spring-driven badge. Pointer capture prevents losing the card mid-drag.
 const badge=document.querySelector('#badge-position'),card=document.querySelector('#id-card'),lanyard=document.querySelector('.lanyard');
@@ -589,3 +589,16 @@ document.querySelector('#copy-email').addEventListener('click',async()=>{const s
 const clockFormat=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Singapore',hour:'2-digit',minute:'2-digit',hour12:false});
 function updateClock(){const now=new Date(),c=document.querySelector('#singapore-time');c.textContent=clockFormat.format(now)+' SGT';c.dateTime=now.toISOString();document.querySelector('#year').textContent=new Intl.DateTimeFormat('en',{timeZone:'Asia/Singapore',year:'numeric'}).format(now);}
 renderContent();updateClock();setInterval(updateClock,30000);
+
+// The assistant can only open established sections, projects, or résumé views.
+window.addEventListener('portfolio-agent-action',event=>{
+ const action=event.detail;if(!action||typeof action!=='object')return;
+ if(action.type==='project'&&projects.some(p=>p.id===action.target)){
+  selectProject(action.target);document.querySelector('#work').scrollIntoView({behavior:'smooth'});
+  activeDialog=action.target;renderDialog();showDialog(document.querySelector('#project-detail'));
+ }else if(action.type==='section'&&['home','journey','work','offscreen','contact'].includes(action.target)){
+  document.getElementById(action.target).scrollIntoView({behavior:'smooth'});
+ }else if(action.type==='resume'&&['zh','en'].includes(action.target)){
+  openResume(document.querySelector('[data-resume]'));
+ }
+});

@@ -1,0 +1,186 @@
+{
+  "version": "2026-11-03",
+  "precedence": "Owner confirmations > Chinese résumé > approved portfolio > English résumé > implementation observations.",
+  "documents": [
+    {
+      "id": "education",
+      "title": "教育背景 / Education",
+      "summary": "NTU computer science, Data Science & AI, Jul 2023–May 2027. Expected, not completed.",
+      "text": "李中元，英文名 David Li Zhongyuan，在新加坡南洋理工大学就读计算机科学荣誉学士，专修数据科学与人工智能。教育时间为2023年7月至2027年5月；2027年5月是预计毕业时间，尚未毕业。没有提供GPA、班级排名、奖学金或已获得的毕业荣誉等级。",
+      "source": "中文版简历；David 2026-11-03 确认",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "career",
+      "title": "求职方向 / Career direction",
+      "summary": "David seeks AI-related roles; exact role and availability are not yet confirmed.",
+      "text": "David明确表示想寻找AI方向的岗位。目前没有进一步确认岗位细分、期望薪资、工作地点偏好、签证或工作许可状态、最早入职时间。可以结合他的AI/NLP、软件开发、机器人项目讨论相关经历，但不能声称他已确定某个具体岗位。",
+      "source": "David 本人回答 · 2026-11-03",
+      "url": "#contact",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "akc-role",
+      "title": "AKC 实习与个人贡献",
+      "summary": "Jan–Jun 2026, independently delivered feedback platform from requirements to company-server deployment.",
+      "text": "Absolute Kinetics Consultancy Pte. Ltd. 技术产品开发实习，2026年1月至6月。面向职业培训学员的课后评价场景，从需求拆解、开发到公司服务器部署，独立交付反馈分析平台。核心功能是动态表单、课程评价可视化看板、低分自动预警，为培训质量分析和服务改进提供数据支持。并未提供使用人数、节省时间百分比或反馈提升幅度。英文旧简历的7月结束日期不再作为依据，网站按已确认中文版的6月结束日期。",
+      "source": "中文版简历（日期优先）",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": "feedback"
+    },
+    {
+      "id": "akc-flow",
+      "title": "反馈系统的工作流",
+      "summary": "QR feedback collection, configurable forms, analytics, low-rating follow-up.",
+      "text": "反馈系统中，管理员创建课程会话并生成二维码；学员扫码进入并填写反馈；管理员在后台管理动态表单、查看图表并跟进低评分。表单支持不同问题类型和多语言版本；系统检查重复提交。所提供的实现用评分阈值和负面关键词触发低分提醒，这不是一个训练过的情感识别模型。可解释这种规则机制与模型分类的区别，但不要把该反馈系统说成已实现大模型情感分析。",
+      "source": "反馈系统源码功能核对（仅公开功能摘要）",
+      "url": "#work",
+      "kind": "verified",
+      "project": "feedback"
+    },
+    {
+      "id": "akc-stack",
+      "title": "反馈系统技术栈与部署",
+      "summary": "Python/Flask, Microsoft SQL Server, Chart.js, IIS deployment. SQL Server confirmed by David.",
+      "text": "后端为Python/Flask；数据库最终实际使用Microsoft SQL Server，David于2026-11-03明确确认。简历中的MySQL写法不再适用。提供的实现通过pyodbc连接数据库，前端使用Jinja模板、JavaScript和Chart.js，部署资料使用Windows Server/IIS与wfastcgi。源代码把业务资料与反馈资料分开连接。不要公开内部数据库名称、服务器地址、登录账号或连接信息。尚未确认为什么选SQL Server的个人决策理由。",
+      "source": "David 数据库确认；反馈系统源码功能核对",
+      "url": "#work",
+      "kind": "verified",
+      "project": "feedback"
+    },
+    {
+      "id": "akc-proctoring",
+      "title": "在线考试系统改进",
+      "summary": "Identified switching-screen risks; adjusted existing tracking thresholds and handled exceptions.",
+      "text": "在AKC实习中，David主动识别在线考试系统的监考风险，围绕切屏等潜在作弊场景提出改进方案，调整既有眼部追踪判定阈值并处理异常场景，完成生产调试。可以说明这是对既有系统的风险分析和调优；不能说他从零训练了监考视觉模型，也不能自行编造识别准确率或误报率。",
+      "source": "中文版简历",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "akc-challenge",
+      "title": "从模糊需求到第一版交付",
+      "summary": "Owner-confirmed behavioral example: initially unsure, used AI to broaden ideas, clarified company needs, built and iterated.",
+      "text": "David本人描述：反馈项目最大的困难，是刚拿到需求时不知道从哪里开始。他一步步借助AI拓展思路，进一步充分了解公司的需求后进行开发。交付第一版之后，又根据新的需求增加功能。可自然组织为「需求不清晰→借助AI探索、梳理需求→开发第一版→根据反馈迭代」，突出学习能力、需求理解、问题拆解和持续交付。没有确认具体访谈次数、技术故障、工期、业务效果数字或AI工具名称，不得补编。",
+      "source": "David 本人面试回答 · 2026-11-03",
+      "url": "#work",
+      "kind": "verified",
+      "project": "feedback"
+    },
+    {
+      "id": "noah",
+      "title": "Noah’s Ark 实习",
+      "summary": "May–Nov 2025; 700+ school records, 150+ student cases; retrieval/ranking, PRD, UAT, RBAC, SOP.",
+      "text": "SG Noah’s Ark EduTec Pte. Ltd. 软件工程实习生，2025年5月至11月。基于Python与Airtable API构建院校检索与排序原型，清洗处理700多条院校数据、设计筛选及评分规则，用150多个典型学生案例验证结果。负责师生消息、申请追踪和RBAC权限模块的需求澄清、PRD编写及UAT；整理业务流程和系统操作SOP。中文版未确认旧英文简历所写的约70%入职时间缩短，因此不能把该百分比作为已验证成绩。",
+      "source": "中文版简历",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "inteagle",
+      "title": "Inteagle Vision 实习",
+      "summary": "Dec 2025–Jan 2026; Hong Kong market, policy, competitor research; Blender exhibition prototypes.",
+      "text": "鹰腾信息科技有限公司（Inteagle Vision）市场与产品助理，2025年12月至2026年1月。完成香港市场、政策与竞品分析，使用Blender协助完成展会3D模型的快速原型设计。没有提供营收成果、团队人数或具体客户名单。",
+      "source": "中文版简历",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "massive-model",
+      "title": "MASSIVE 意图分类与槽位填充",
+      "summary": "NLP project since Aug 2026: baseline model training; attention-based seq2seq, embeddings, under 20M parameters.",
+      "text": "MASSIVE意图分类与槽位填充项目，2026年8月至今。负责基线模型开发和训练，进行用户意图识别与槽位信息抽取，总参数量控制在2000万以内。已提供的英文项目描述为带词嵌入的注意力序列到序列模型。可以解释intent是句子的目标、slot是所需信息，举「play some jazz」→音乐播放意图、jazz曲风槽位作为说明性示例，不能声称此例是实测预测结果。",
+      "source": "中英文简历及已发布作品说明",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": "massive"
+    },
+    {
+      "id": "massive-evaluation",
+      "title": "MASSIVE 数据与评估",
+      "summary": "16,521 English utterances; official splits; intent accuracy, exact-match slot micro-F1; best validation checkpoint.",
+      "text": "构建了覆盖16,521条MASSIVE英文语料的数据预处理流程，将原始文本与标注转成模型输入和标签，严格保留官方训练、验证和测试划分。统一评估意图准确率和槽位精确匹配Micro-F1，记录逐轮损失和学习曲线，根据验证集表现保存最佳模型，再加载进行验证集复评和独立测试集评估。尚无确认的准确率、F1数值、基线对比、超参数或错误分析结果；遇到这些问题应说明待David补充，不能虚构「达到95%」。",
+      "source": "中文版简历",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": "massive"
+    },
+    {
+      "id": "robot-role",
+      "title": "Android 机器人控制端",
+      "summary": "Aug–Oct 2026; Android UI, obstacle/map configuration, status display, Bluetooth, physical end-to-end tests.",
+      "text": "AI自主机器人安卓控制端与算法开发，2026年8月至10月。David负责Android控制端开发，实现地图和障碍物配置、实时状态展示与Bluetooth指令交互，通过真机测试和机器人端到端联调验证控制流程。他参与路径规划模块开发；不应把摄像头识别模型、硬件电路、所有树莓派工作或全部团队代码都归为David个人负责。",
+      "source": "中文版简历",
+      "url": "assets/david-li-resume-zh.pdf",
+      "kind": "verified",
+      "project": "robot"
+    },
+    {
+      "id": "robot-planning",
+      "title": "路径规划与边界",
+      "summary": "Dijkstra shortest paths to obstacle recognition positions; travel-cost goal, no measured savings supplied.",
+      "text": "路径规划模块使用Dijkstra算法计算最短路径，支持小车到达各障碍物的图像识别位置，以减少行驶开销、缩短整体任务耗时为目标。可解释Dijkstra处理非负边权下的最短路属于算法原理，并明确这属于技术解释；不能宣称已测得某个百分比的耗时下降。另有传感器引导绕单个障碍物的源码变体，不要与主路径规划算法混为一谈。",
+      "source": "中文版简历；机器人项目资料",
+      "url": "#work",
+      "kind": "verified",
+      "project": "robot"
+    },
+    {
+      "id": "robot-protocol",
+      "title": "Android 通信与地图实现",
+      "summary": "Bluetooth Classic RFCOMM, 20x20 to 40x40 coordinates, stable obstacle IDs, mode/READY/START, demo vs hardware.",
+      "text": "提供的Android实现采用Bluetooth Classic/RFCOMM；地图支持添加、编辑、删除和保存障碍物，稳定的障碍物ID，整张地图一次性提交。界面20×20坐标转换为算法40×40坐标。控制流程有模式、READY、START握手，保存有序收发消息并处理断连。演示模式用于无硬件UI测试，不能替代真实蓝牙或物理机器人测试。这些是提供源码中可观察到的项目实现，不能据此断言每个细节均由David本人独立完成。",
+      "source": "Android 控制端源码功能核对（摘要）",
+      "url": "#work",
+      "kind": "implementation",
+      "project": "robot"
+    },
+    {
+      "id": "planner",
+      "title": "NTU Planner 的个人职责",
+      "summary": "Jan–Jun 2025 student-team project; UI design; 1,000+ Telegram feedback community; assisted Canlah AI/calendar integration.",
+      "text": "南洋理工大学智能选课系统，2025年1月至6月。学生团队自主发起的项目，David围绕校内选课体验问题负责UI设计，协助Canlah AI部署以实现自动Google Calendar更新。项目建立超过1000人的Telegram用户反馈社群，这个数字是社群规模，不应改写成David独立开发的产品有1000名活跃用户。不能将整个网站的后端、认证和数据采集都归于David。项目网址https://ntu-planner.com/。",
+      "source": "中文版简历（个人职责优先）",
+      "url": "https://ntu-planner.com/",
+      "kind": "verified",
+      "project": "planner"
+    },
+    {
+      "id": "snooker",
+      "title": "斯诺克与团队经历",
+      "summary": "Captain, NTU Hall 3 snooker team; Inter-Hall Games champions.",
+      "text": "David担任NTU Hall 3斯诺克队队长，带领队伍赢得校内宿舍运动会冠军。可以结合这段经历谈团队协作、耐心与判断，但尚未提供具体队内冲突、训练计划、赛场逆转细节或个人最高分，不得创作成真实故事。网站有本人比赛和练习照片。",
+      "source": "中英文简历及已发布生活部分",
+      "url": "#offscreen",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "skills",
+      "title": "技能与经验范围",
+      "summary": "Python, Android/Java, PyTorch, GitHub, Blender, AI coding tools; no unverified expertise grades.",
+      "text": "中文版列出的计算机技能包括Python、Android开发、Java、GitHub、PyTorch、Blender、Claude Code/Codex。项目经历还涉及Flask、SQL、Airtable、产品需求、PRD、UAT和RBAC。可以根据具体项目讲使用经验，不可自行评定「专家级」或虚构多年全职经验。用户正在建设基于LangGraph和Gemini的个人网站AI助手，这个项目仍在开发中，不能把它描述为长期生产成果。",
+      "source": "中文版简历与本人当前项目请求",
+      "url": "#journey",
+      "kind": "verified",
+      "project": null
+    },
+    {
+      "id": "contact",
+      "title": "公开联系方式",
+      "summary": "Public email, LinkedIn, GitHub, two résumés. No private identifiers.",
+      "text": "公开职业联系邮箱为LIZH0084@e.ntu.edu.sg。GitHub https://github.com/Davidli1127；LinkedIn https://www.linkedin.com/in/zhongyuan-li-28904b352。网站提供中英文简历。不能公开私人电话、私人邮箱、住址、内部账号、学校证件号码或未公开的文件内容。",
+      "source": "网站公开联系资料",
+      "url": "#contact",
+      "kind": "verified",
+      "project": null
+    }
+  ]
+}

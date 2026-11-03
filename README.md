@@ -23,3 +23,9 @@ Open `index.html`, or run `python3 -m http.server 8000` in this directory and vi
 The site is static and does not require a build step. GitHub Pages serves the root of `main`.
 
 Three.js is distributed under the MIT license in `assets/vendor/THREE-LICENSE.txt`. GitHub and LinkedIn marks belong to their respective owners; asset sources are documented in `assets/icons/SOURCES.txt`.
+
+## AI interview assistant
+
+The site includes David’s AI assistant, with Gemini and a LangGraph workflow on a separate Cloudflare Worker. It answers from approved résumé/project knowledge, shows sources, and can open the relevant portfolio section. The website itself remains static.
+
+See [agent-service/README.md](agent-service/README.md) for local setup, the private owner interview studio, deployment, free-tier limits, privacy and evaluation. `agent-config.js` contains only the public backend URL, never an API key.
