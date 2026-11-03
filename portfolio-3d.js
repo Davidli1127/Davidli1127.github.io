@@ -515,8 +515,20 @@ function renderProjects(){
 function selectProject(id){selectedProject=id;document.querySelectorAll('[data-project-tab]').forEach(b=>{const a=b.dataset.projectTab===id;b.classList.toggle('active',a);b.setAttribute('aria-selected',String(a));b.tabIndex=a?0:-1;});renderFeatured();window.portfolioScene?.focusProject(id);}
 function renderFeatured(){
  const p=projects.find(p=>p.id===selectedProject),n=projects.indexOf(p)+1;
- document.querySelector('#project-stage').innerHTML=`<article id="project-panel" class="featured-project" role="tabpanel" aria-labelledby="tab-${p.id}" tabindex="0"><div class="project-kicker"><span>${tr('selectedWork')} / 0${n}</span><span>${p.date}</span></div>${artwork(p)}<div class="project-info"><h3>${safe(p.title[lang])}</h3><p>${safe(p.summary[lang])}</p><div class="project-footer"><div class="tags">${p.tags.map(t=>`<span>${safe(t)}</span>`).join('')}</div><button class="primary-button" type="button" id="project-detail">${icon('plus')}<span>${tr('projectDetail')}</span></button></div></div></article>`;
- document.querySelector('#project-detail').addEventListener('click',e=>{activeDialog=selectedProject;renderDialog();showDialog(e.currentTarget);});
+ const stage=document.querySelector('#project-stage');
+ stage.dataset.project=p.id;
+ stage.innerHTML=`<article id="project-panel" class="featured-project" role="tabpanel" aria-labelledby="tab-${p.id}" aria-description="${lang==='zh'?'点击卡片或按回车键查看项目详情。':'Click the card or press Enter to explore this project.'}" tabindex="0"><div class="project-kicker"><span>${tr('selectedWork')} / 0${n}</span><span>${p.date}</span></div>${artwork(p)}<div class="project-info"><h3>${safe(p.title[lang])}</h3><p>${safe(p.summary[lang])}</p><div class="project-footer"><div class="tags">${p.tags.map(t=>`<span>${safe(t)}</span>`).join('')}</div><button class="primary-button" type="button" id="project-detail">${icon('plus')}<span>${tr('projectDetail')}</span></button></div></div></article>`;
+ const panel=document.querySelector('#project-panel');
+ const openProject=focus=>{activeDialog=selectedProject;renderDialog();showDialog(focus);};
+ document.querySelector('#project-detail').addEventListener('click',e=>openProject(e.currentTarget));
+ panel.addEventListener('click',e=>{
+  if(e.target.closest('a,button') || window.getSelection()?.toString().trim())return;
+  openProject(panel);
+ });
+ panel.addEventListener('keydown',e=>{
+  if(e.target!==panel || !['Enter',' '].includes(e.key))return;
+  e.preventDefault();openProject(panel);
+ });
  window.dispatchEvent(new Event('portfolio-layout'));
 }
 function showDialog(focus){lastFocus=focus;dialog.showModal();dialog.scrollTop=0;document.body.classList.add('modal-open');dialog.querySelector('.dialog-close').focus();}
