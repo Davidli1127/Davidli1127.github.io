@@ -1,0 +1,174 @@
+/* A quiet, shared light language for pointer, touch, keyboard, and scroll. */
+:root {
+  --fx-mint: 169 232 221;
+  --fx-lilac: 185 176 237;
+  --scroll-light: 0;
+}
+html[data-theme="light"] {
+  --fx-mint: 20 102 92;
+  --fx-lilac: 117 98 157;
+}
+
+.scroll-aura {
+  position: fixed;
+  inset: -15%;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 12% 72%, rgb(var(--fx-mint) / .48), transparent 44%),
+    radial-gradient(ellipse at 94% 30%, rgb(var(--fx-lilac) / .35), transparent 42%);
+  opacity: calc(var(--scroll-light) * .24);
+  transform: translate3d(0, var(--scroll-drift, 0px), 0);
+  will-change: opacity, transform;
+}
+html[data-theme="light"] .scroll-aura { opacity: calc(var(--scroll-light) * .14); }
+.scroll-progress span {
+  position: relative;
+  box-shadow: 0 0 calc(3px + var(--scroll-light) * 17px) rgb(var(--fx-mint) / .8);
+}
+.scroll-progress span::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 38px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--fx-mint));
+  filter: blur(5px);
+  opacity: var(--scroll-light);
+}
+
+.fx-control {
+  --fx-x: 50%;
+  --fx-y: 50%;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    translate 240ms cubic-bezier(.2,.8,.2,1),
+    scale 260ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 280ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
+}
+.fx-control:not(.dialog-close) { position: relative; }
+.fx-control::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse 190px 120px at var(--fx-x) var(--fx-y), rgb(var(--fx-mint) / .22), transparent 75%);
+  box-shadow: inset 0 0 0 1px rgb(var(--fx-mint) / .22);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+.fx-control.fx-hover::after,
+.fx-control:focus-visible::after { opacity: 1; }
+.fx-control:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+  box-shadow: 0 0 24px rgb(var(--fx-mint) / .12);
+}
+.chapter-nav a.fx-control,
+.email-link.fx-control,
+.scroll-cue.fx-control,
+.back-top.fx-control,
+footer .signature.fx-control { overflow: visible; }
+.chapter-nav a.fx-control::after,
+.email-link.fx-control::after,
+.scroll-cue.fx-control::after,
+.back-top.fx-control::after,
+footer .signature.fx-control::after { inset: -7px; border-radius: 7px; box-shadow: none; }
+.scene-control.fx-control,
+.toolkit summary.fx-control { border-radius: 7px; }
+.id-card.fx-control::after {
+  background: radial-gradient(ellipse 220px 180px at var(--fx-x) var(--fx-y), #fff6, transparent 65%);
+  box-shadow: inset 0 0 0 1px #fff7;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fx-control.fx-hover {
+    translate: 0 -2px;
+    border-color: rgb(var(--fx-mint) / .6);
+    box-shadow: 0 8px 25px #0002, 0 0 20px rgb(var(--fx-mint) / .09);
+  }
+  .chapter-nav a.fx-hover,
+  .back-top.fx-hover,
+  .scroll-cue.fx-hover,
+  .email-link.fx-hover,
+  footer .signature.fx-hover { box-shadow: none; }
+  .chapter-nav a.fx-hover { translate: 2px 0; }
+  .id-card.fx-hover {
+    translate: 0 -3px;
+    box-shadow: 0 18px 35px #0005, 0 0 35px rgb(var(--fx-mint) / .18), inset 0 0 0 1px #fff9;
+  }
+}
+.fx-control.fx-pressed { scale: .975; translate: 0 1px; transition-duration: 100ms; }
+.id-card.fx-pressed { scale: .99; }
+.fx-control.fx-activated :is(.icon, .brand-github, .brand-linkedin) {
+  animation: icon-response 420ms cubic-bezier(.2,.8,.2,1);
+}
+.project-tab.active .tab-indicator { box-shadow: 0 0 12px rgb(var(--fx-mint) / .45); }
+
+.fx-ripple {
+  position: absolute;
+  left: var(--ripple-x);
+  top: var(--ripple-y);
+  z-index: 3;
+  width: var(--ripple-size);
+  height: var(--ripple-size);
+  border: 1px solid rgb(var(--fx-mint) / .45);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(var(--fx-mint) / .27), rgb(var(--fx-mint) / .08) 52%, transparent 70%);
+  animation: light-ripple 680ms cubic-bezier(.16,.7,.3,1) forwards;
+}
+.id-card .fx-ripple { border-color: #fff9; background: radial-gradient(circle, #fff6, transparent 70%); }
+.chapter-nav a .fx-ripple,
+.scroll-cue .fx-ripple,
+.back-top .fx-ripple,
+.email-link .fx-ripple,
+footer .signature .fx-ripple { max-width: 90px; max-height: 90px; }
+.interaction-flashes { position: fixed; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
+.click-flare {
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 1px solid rgb(var(--fx-mint) / .4);
+  background: radial-gradient(circle, rgb(var(--fx-mint) / .18), transparent 70%);
+  animation: light-ripple 620ms ease-out forwards;
+}
+.detail-dialog[open] { animation: dialog-response 220ms cubic-bezier(.2,.8,.2,1); }
+@keyframes light-ripple {
+  from { opacity: .85; transform: translate(-50%, -50%) scale(.12); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes icon-response {
+  0%, 100% { transform: scale(1); }
+  42% { transform: scale(1.12); }
+}
+@keyframes dialog-response {
+  from { opacity: 0; transform: translateY(9px) scale(.99); }
+  to { opacity: 1; transform: none; }
+}
+@media (max-width: 800px) {
+  .scroll-aura { opacity: calc(var(--scroll-light) * .15); }
+  html[data-theme="light"] .scroll-aura { opacity: calc(var(--scroll-light) * .1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-aura, .interaction-flashes, .fx-ripple { display: none; }
+  .fx-control { transition: none; }
+  .fx-control.fx-hover, .fx-control.fx-pressed { translate: none; scale: 1; }
+  .detail-dialog[open], .fx-control.fx-activated :is(.icon, .brand-github, .brand-linkedin) { animation: none; }
+}
+html[data-motion="paused"] .scroll-aura,
+html[data-motion="paused"] .interaction-flashes,
+html[data-motion="paused"] .fx-ripple { display: none; }
+html[data-motion="paused"] .fx-control { transition: none; }
+html[data-motion="paused"] .fx-control:is(.fx-hover, .fx-pressed) { translate: none; scale: 1; }
+html[data-motion="paused"] .detail-dialog[open],
+html[data-motion="paused"] .fx-control.fx-activated :is(.icon, .brand-github, .brand-linkedin) { animation: none; }

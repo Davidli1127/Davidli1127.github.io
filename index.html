@@ -1,21 +1,24 @@
 <!doctype html>
 <html lang="zh-CN" data-theme="dark">
 <head>
-<!-- Standalone 3D portfolio delivery. Version: 2026-10-21-REFINED. -->
+<!-- Standalone 3D portfolio delivery. Version: 2026-11-03-LUMINOUS. -->
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1017">
 <meta name="description" content="David Li Zhongyuan 的互动个人空间。NTU Computer Science，人工智能、软件开发与机器人项目。">
 <meta property="og:title" content="David Li — A small universe of ideas"><meta property="og:description" content="An interactive 3D portfolio. Explore my projects, experience, and the things I love building."><meta property="og:type" content="website">
 <title>David Li · 3D Portfolio</title>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="portfolio-3d.css?v=refined3">
-<script src="assets/vendor/three.js" defer></script><script src="world-3d.js?v=refined3" defer></script><script src="portfolio-3d.js?v=refined3" defer></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="portfolio-3d.css?v=luminous1">
+<link rel="stylesheet" href="interaction-effects.css?v=luminous1">
+<script src="assets/vendor/three.js" defer></script><script src="world-3d.js?v=refined3" defer></script><script src="portfolio-3d.js?v=refined3" defer></script><script src="interaction-effects.js?v=luminous1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#journey" data-i18n="skip">跳到履历</a>
 <div id="scene" class="scene" aria-hidden="true"></div>
 <div class="scene-shade" aria-hidden="true"></div><div class="scene-vignette" aria-hidden="true"></div><div class="film-grain" aria-hidden="true"></div>
+<div id="scroll-aura" class="scroll-aura" aria-hidden="true"></div>
+<div id="interaction-flashes" class="interaction-flashes" aria-hidden="true"></div>
 <div class="scroll-progress" aria-hidden="true"><span id="progress"></span></div>
-<header class="site-header"><a class="signature" href="#home" aria-label="David Li, home">David</a><div class="header-center mono">A SMALL UNIVERSE OF IDEAS</div><div class="header-controls"><button id="motion-toggle" class="icon-button" type="button" aria-label="暂停场景动画" aria-pressed="false" title="Pause animation">Ⅱ</button><button id="theme-toggle" class="icon-button" type="button" aria-label="切换明暗主题" title="Toggle theme">☼</button><button id="lang-toggle" class="language-button" type="button" aria-label="Switch to English">EN</button></div></header>
+<header class="site-header"><div class="header-center mono">A SMALL UNIVERSE OF IDEAS</div><div class="header-controls"><button id="motion-toggle" class="icon-button" type="button" aria-label="暂停场景动画" aria-pressed="false" title="Pause animation">Ⅱ</button><button id="theme-toggle" class="icon-button" type="button" aria-label="切换明暗主题" title="Toggle theme">☼</button><button id="lang-toggle" class="language-button" type="button" aria-label="Switch to English">EN</button></div></header>
 <nav class="chapter-nav" aria-label="章节 / Chapters"><a href="#home" class="active" aria-current="location"><span>00</span><b data-i18n="navHome">你好</b></a><a href="#journey"><span>01</span><b data-i18n="navJourney">履历</b></a><a href="#work"><span>02</span><b data-i18n="navWork">作品</b></a><a href="#offscreen"><span>03</span><b data-i18n="navLife">生活</b></a><a href="#contact"><span>04</span><b data-i18n="navContact">联系</b></a></nav>
 <main>
 <section class="hero" id="home" aria-labelledby="hero-title">
