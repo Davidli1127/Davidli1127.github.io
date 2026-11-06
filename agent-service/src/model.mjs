@@ -2,7 +2,7 @@ export class AgentError extends Error {
   constructor(code, status = 503) { super(code); this.code = code; this.status = status; }
 }
 
-export const FREE_MODELS = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
+export const FREE_MODELS = ['gemini-3.5-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
 
 // API keys are opaque credentials. Google now issues authorization keys as well
 // as standard keys; neither a historical prefix nor length is a validity check.
@@ -37,7 +37,7 @@ export function createGemini(env, { fetchImpl = fetch, signal } = {}) {
   if (!FREE_MODELS.includes(model)) throw new AgentError('model_not_allowed');
   const apiKey = normalizeGeminiKey(env.GEMINI_API_KEY);
   let calls = 0, retriesRemaining = 1;
-  return async function ask({ system, input, schema, maxTokens = 2400 }) {
+  return async function ask({ system, input, schema, maxTokens = 2400, thinkingLevel = 'low' }) {
     if (++calls > 3) throw new AgentError('call_budget_exceeded');
     let response;
     for (;;) {
@@ -51,7 +51,8 @@ export function createGemini(env, { fetchImpl = fetch, signal } = {}) {
           systemInstruction: { parts: [{ text: system }] },
           contents: [{ role: 'user', parts: [{ text: JSON.stringify(input) }] }],
           generationConfig: {
-            temperature: .2, maxOutputTokens: maxTokens,
+            maxOutputTokens: maxTokens,
+            thinkingConfig: { thinkingLevel },
             responseMimeType: 'application/json', responseJsonSchema: schema
           }
         })

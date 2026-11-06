@@ -26,6 +26,6 @@ Three.js is distributed under the MIT license in `assets/vendor/THREE-LICENSE.tx
 
 ## AI interview assistant
 
-The site includes David’s AI assistant, with Gemini and a LangGraph workflow on a separate Cloudflare Worker. It answers from approved résumé/project knowledge, shows sources, and can open the relevant portfolio section. The website itself remains static.
+The site includes 小D (Xiao D), David’s AI counterpart, with Gemini 3.5 Flash and a LangGraph workflow on a separate Cloudflare Worker. It speaks in first person using approved résumé/project knowledge, shows sources, and can open the relevant portfolio section. Intent-specific writing skills and relevant voice examples keep replies concise and natural. The website itself remains static.
 
 See [agent-service/README.md](agent-service/README.md) for local setup, the private owner interview studio, deployment, free-tier limits, privacy and evaluation. `agent-config.js` contains only the public backend URL, never an API key.

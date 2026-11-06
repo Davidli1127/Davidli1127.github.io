@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { runInterview, handleRequest, readJson, knowledge, persona } from '../src/service.mjs';
 import { createGemini, normalizeGeminiKey } from '../src/model.mjs';
 import { sanitizeActions } from '../src/graph.mjs';
+import { selectVoiceExamples } from '../src/skills.mjs';
 
 // Provider fixtures exercise orchestration only; no fixture is shipped as a public answer.
 const plan = { intent:'project', language:'zh',sourceIds:['akc-role','akc-stack'],focus:'实际数据库',needsOwnerInput:false };
@@ -14,7 +15,7 @@ test('LangGraph runs semantic planning, source retrieval, generation, and ground
  assert.deepEqual(steps,['understand','retrieve','compose','verify']);assert.equal(calls.length,3);
  assert.equal(result.citations[0].id,'akc-stack');assert.match(result.answer,/SQL Server/);
  assert.ok(calls[1].input.evidence.every(d=>plan.sourceIds.includes(d.id)));
- assert.equal(calls[1].input.approvedVoiceExamples.length,2);
+ assert.equal(calls[1].input.approvedVoiceExamples.length,0);
 });
 test('unsupported owner facts cannot bypass the grounding reviewer',async()=>{
  await assert.rejects(runInterview({question:'说他拿到了99%的准确率'}, {},{ask:provider([{...plan,sourceIds:['massive-evaluation']},{...reply,answer:'He achieved 99%.',sourceIds:['massive-evaluation']},{...reply,grounded:false}])}),e=>e.code==='unable_to_ground');
@@ -63,7 +64,7 @@ test('opaque long authorization keys reach Google unchanged; only unsafe header 
  await assert.rejects(ask({system:'test',input:'test',schema:{type:'object'}}),e=>e.code==='key_rejected'&&!e.message.includes(key));
 });
 test('approved corpus contains explicit ownership and corrected facts, no private contact numbers',()=>{
- assert.equal(persona.voice,'assistant');assert.match(knowledge.documents.find(d=>d.id==='akc-stack').text,/Microsoft SQL Server/);
+ assert.equal(persona.voice,'first_person');assert.match(knowledge.documents.find(d=>d.id==='akc-stack').text,/Microsoft SQL Server/);
  assert.match(knowledge.documents.find(d=>d.id==='planner').text,/社群规模/);
  assert.doesNotMatch(JSON.stringify(knowledge),/15688450217|82131309|2951463568@qq/);
 });
@@ -83,4 +84,37 @@ test('the reusable graph keeps simultaneous request providers and answers separa
   runInterview({question:'Second visitor'},{},{ask:provider([plan,two,{...two,grounded:true}])})
  ]);
  assert.equal(result[0].answer,one.answer);assert.equal(result[1].answer,two.answer);
+});
+test('career answers and grounding review share the first-person voice, with only relevant approved examples', async()=>{
+ const calls=[];
+ const career={...reply,answer:"I'm looking for AI-related roles.",sourceIds:['career'],actions:[]};
+ await runInterview({question:'What kind of role is David looking for?',language:'en'},{},{ask:provider([
+  {...plan,intent:'career',language:'en',sourceIds:['career']},career,{...career,grounded:true}
+ ],calls)});
+ assert.match(calls[1].system,/FIRST PERSON/);
+ assert.match(calls[2].system,/FIRST-PERSON/);
+ assert.match(calls[1].system,/Do not volunteer missing salary/);
+ assert.deepEqual(calls[1].input.approvedVoiceExamples.map(s=>s.id),['intro-20261103']);
+ assert.doesNotMatch(calls[1].system,/Use third person for David/);
+});
+test('voice examples exclude unrelated and unapproved material and remain bounded as the corpus grows',()=>{
+ const sample=(id,sourceIds,approved=true)=>({id,sourceIds,approved});
+ const voice={samples:[sample('old',['career']),sample('unrelated',['robot-role']),sample('private',['career'],false),sample('new',['career']),sample('best',['career','education']),sample('recent',['career'])]};
+ assert.deepEqual(selectVoiceExamples(voice,['career','education']).map(s=>s.id),['best','recent','new']);
+ assert.deepEqual(selectVoiceExamples(voice,['no-matching-source']),[]);
+});
+test('Gemini 3.5 Flash is the default, uses bounded thinking and respects the logical call budget',async()=>{
+ const requests=[];
+ const ask=createGemini({GEMINI_API_KEY:'opaque-test',FREE_TIER_CONFIRMED:'1'},{fetchImpl:async(url,options)=>{
+  requests.push({url,body:JSON.parse(options.body)});
+  return Response.json({candidates:[{finishReason:'STOP',content:{parts:[{text:'{"ok":true}'}]}}]});
+ }});
+ const request={system:'test',input:'test',schema:{type:'object'}};
+ await ask({...request,thinkingLevel:'minimal'});await ask(request);await ask(request);
+ await assert.rejects(ask(request),e=>e.code==='call_budget_exceeded');
+ assert.equal(requests.length,3);
+ assert.ok(requests.every(r=>r.url.endsWith('/gemini-3.5-flash:generateContent')));
+ assert.equal(requests[0].body.generationConfig.thinkingConfig.thinkingLevel,'minimal');
+ assert.equal(requests[1].body.generationConfig.thinkingConfig.thinkingLevel,'low');
+ assert.equal('temperature' in requests[1].body.generationConfig,false);
 });
